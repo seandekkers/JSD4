@@ -35,17 +35,20 @@ generateStartup();
 // the "Generate New Startup" button is clicked
 function generateStartup() {
 
+	var randomA = Math.floor((Math.random() * 6));
+	//console.log("startupA " + randomA);
+	var randomB = Math.floor((Math.random() * 5));
+	//console.log("startupB " + randomB);
 	// TODO: generate two random index numbers, one for each array
-
+    startupIdea = "A startup that is " + startupX[randomA] + ", but for " + startupY[randomB];
+    //console.log(startupIdea);
 	// TODO: concatenate the fixed text with the two random values
 	//       to create a new startup idea like:
 	//       "A startup that is Apple, but for Trello"
-	startupIdea = "A startup that is Apple, but for Trello";
-
-
-
+	//startupIdea = "A startup that is Apple, but for Trello";
 
 	// DONE: Update page with new startup idea
+	
 	startup.innerHTML = startupIdea;
 }
 
@@ -56,6 +59,9 @@ function generateStartup() {
 function saveFavorite() {
 
 	// TODO: add the new idea to the array
+	console.log(startupIdea);
+	favorites.push(startupIdea);
+	console.log(favorites);
 
 }
 
@@ -66,10 +72,12 @@ function saveFavorite() {
 function printFavorites() {
 	// DONE: clear out favorites section each time
 	// before displaying new list of favorites
-	list.innerHTML = '';
-
-
 	// TODO: concatenate all the favorites into one string
+	list.innerHTML = '';
+	var favoritesText = " ";
+	favorites.forEach(function(startup,total){
+		favoritesText += startup + "<br>";
+	});
 	// - hint: loop through all the favorites
 	// - this should be stored in a variable named favoritesText
 	// - each favorite should have an html br element between it (EG: "<br>")
