@@ -1,0 +1,1651 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Sean Dekkers | Design</title>
+<style>
+
+
+  .parallax {
+    height: 500px; /* fallback for older browsers */
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-perspective: 300px;
+    perspective: 300px;
+    -webkit-perspective-origin-x: 100%;
+    perspective-origin-x: 100%;
+  }
+
+  .parallax__group {
+    position: relative;
+    height: 500px; /* fallback for older browsers */
+    height: 100vh;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+  }
+
+  .parallax__layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    -webkit-transform-origin-x: 100%;
+    transform-origin-x: 100%;
+  }
+
+  .parallax__layer--fore {
+    -webkit-transform: translateZ(90px) scale(.7);
+    transform: translateZ(90px) scale(.7);
+    z-index: 1;
+  }
+
+  .parallax__layer--base {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    z-index: 4;
+  }
+
+  .parallax__layer--back {
+    -webkit-transform: translateZ(-300px) scale(2.1);
+    transform: translateZ(-300px) scale(2.1);
+    z-index: 3;
+  }
+
+  .parallax__layer--deep {
+    -webkit-transform: translateZ(-600px) scale(3.1);
+    transform: translateZ(-600px) scale(3.1);
+    z-index: 2;
+  }
+
+
+  /* demo styles
+  --------------------------------------------- */
+
+  body, html {
+    overflow: hidden;
+  }
+
+  body {
+    font: 100% / 1.5 Arial;
+  }
+
+  * {
+    margin:0;
+    padding:0;
+  }
+
+  .parallax {
+    font-size: 200%;
+  }
+
+   /* centre the content in the parallax layers */
+  .title {
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+  .transparent{
+    height: 50px;
+    opacity: 1;
+    background-color: rgb(0,0,0);
+    top: 9px;
+    min-width: 1045px;
+    
+  }
+
+  .logo {
+    display: block;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    top: 9px;
+    width: 144px;
+    height: 41px;
+  }
+
+  /* style the groups
+  --------------------------------------------- */
+
+  #group1 {
+    z-index: 5; /* slide over group 2 */
+  }
+  #group1 .parallax__layer--base {
+    content:url("img/type/SEAN.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group2 {
+    z-index: 3; /* slide under groups 1 and 3 */
+
+  }
+  #group2 .parallax__layer--back {
+    content:url("img/ford0.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+
+  }
+
+  #group3 {
+    z-index: 4; /* slide over group 2 and 4 */
+  }
+  #group3 .parallax__layer--base {
+    content:url("img/type/FORD.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group4 {
+    z-index: 3; /* slide under group 3 and 5 */
+  }
+  #group4 .parallax__layer--back {
+    content:url("img/ford2.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group5 {
+    z-index: 5; /* slide over group 4 and 6 */
+  }
+  #group5 .parallax__layer--base {
+    content:url("img/ford1.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group6 {
+    z-index: 3; /* slide under group 5 and 7 */
+  }
+  #group6 .parallax__layer--base {
+    content:url("img/ford3.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group7 {
+    z-index: 2; /* slide over group 7 */
+  }
+  #group7 .parallax__layer--deep {
+    content:url("img/ford4.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group8 {
+    z-index: 4; /* slide over group 7 */
+  }
+  #group8 .parallax__layer--base {
+    content:url("img/type/FERRARI.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+
+  #group9 {
+    z-index: 4; /* slide over group 2 */
+  }
+  #group9 .parallax__layer--base {
+    background: rgb(102,102,102);
+    content:url("img/ferrari0.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group10 {
+    z-index: 3; /* slide under groups 1 and 3 */
+
+  }
+  #group10 .parallax__layer--back {
+    background: rgb(123,210,102);
+    content:url("img/ferrari2.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+
+  }
+
+  #group11 {
+    z-index: 4; /* slide over group 2 and 4 */
+  }
+  #group11 .parallax__layer--base {
+    content:url("img/ferrari1.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group12 {
+    z-index: 2; /* slide under group 3 and 5 */
+  }
+  #group12 .parallax__layer--deep {
+    content:url("img/ferrari4.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group13 {
+    z-index: 2; /* slide over group 4 and 6 */
+  }
+  #group13 .parallax__layer--base {
+    content:url("img/ferrari3.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group14 {
+    z-index: 5; /* slide under group 5 and 7 */
+  }
+  #group14 .parallax__layer--base {
+    content:url("img/type/COMMON.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group15 {
+    z-index: 3; /* slide over group 7 */
+  }
+  #group15 .parallax__layer--base {
+    content:url("img/common0.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group16 {
+    z-index: 2; /* slide under group 5 and 7 */
+  }
+  #group16 .parallax__layer--deep {
+    content:url("img/common1.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+    #group17 {
+    z-index: 5; /* slide over group 2 */
+  }
+  #group17 .parallax__layer--base {
+    background: rgb(102,102,102);
+    content:url("img/type/PWC.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group18 {
+    z-index: 3; /* slide under groups 1 and 3 */
+
+  }
+  #group18 .parallax__layer--back {
+    background: rgb(123,210,102);
+    content:url("img/pwc0.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+
+  }
+
+  #group19 {
+    z-index: 4; /* slide over group 2 and 4 */
+  }
+  #group19 .parallax__layer--base {
+    content:url("img/pwc1.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group20 {
+    z-index: 2; /* slide under group 3 and 5 */
+  }
+  #group20 .parallax__layer--deep {
+    content:url("img/pwc2.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group21 {
+    z-index: 4; /* slide over group 4 and 6 */
+  }
+  #group21 .parallax__layer--base {
+    content:url("img/type/BLUE_ORIGIN.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group22 {
+    z-index: 3; /* slide under group 5 and 7 */
+  }
+  #group22 .parallax__layer--base {
+    content:url("img/blueorigin0.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group23 {
+    z-index: 2; /* slide over group 7 */
+  }
+  #group23 .parallax__layer--deep {
+    content:url("img/blueorigin1.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group24 {
+    z-index: 4; /* slide over group 7 */
+  }
+  #group24 .parallax__layer--base {
+    content:url("img/blueorigin2.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+
+  #group25 {
+    z-index: 5; /* slide over group 2 */
+  }
+  #group25 .parallax__layer--base {
+    background: rgb(102,102,102);
+    content:url("img/blueorigin3.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group26 {
+    z-index: 3; /* slide under groups 1 and 3 */
+
+  }
+  #group26 .parallax__layer--back {
+    background: rgb(123,210,102);
+    content:url("img/blueorigin4.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+
+  }
+
+  #group27 {
+    z-index: 4; /* slide over group 2 and 4 */
+  }
+  #group27 .parallax__layer--base {
+    content:url("img/blueorigin5.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group28 {
+    z-index: 4; /* slide under group 3 and 5 */
+  }
+  #group28 .parallax__layer--base {
+    content:url("img/type/COLLABORATE.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group29 {
+    z-index: 3; /* slide over group 4 and 6 */
+  }
+  #group29 .parallax__layer--back {
+    content:url("img/world0.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group30 {
+    z-index: 4; /* slide under group 5 and 7 */
+  }
+  #group30 .parallax__layer--base {
+    content:url("img/type/VOX.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group31 {
+    z-index: 3; /* slide over group 7 */
+  }
+  #group31 .parallax__layer--back {
+    content:url("img/vox0.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group32 {
+    z-index: 4; /* slide under group 5 and 7 */
+  }
+  #group32 .parallax__layer--base {
+    content:url("img/type/LOCAL_MOTORS.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group33 {
+    z-index: 3; /* slide over group 2 */
+  }
+  #group33 .parallax__layer--back {
+    content:url("img/localmotors0.png");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group34 {
+    z-index: 4; /* slide under groups 1 and 3 */
+
+  }
+  #group34 .parallax__layer--base {
+    content:url("img/type/FAIRMONT.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+
+  }
+
+  #group35 {
+    z-index: 4; /* slide over group 2 and 4 */
+  }
+  #group35 .parallax__layer--base {
+    content:url("img/fairmont0.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group36 {
+    z-index: 3; /* slide under group 3 and 5 */
+  }
+  #group36 .parallax__layer--back {
+    content:url("img/fairmont2.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group37 {
+    z-index: 5; /* slide over group 4 and 6 */
+  }
+  #group37 .parallax__layer--base {
+    content:url("img/fairmont4.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group38 {
+    z-index: 3; /* slide under group 5 and 7 */
+  }
+  #group38 .parallax__layer--base {
+    content:url("img/fairmont5.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group39 {
+    z-index: 2; /* slide over group 7 */
+  }
+  #group39 .parallax__layer--deep {
+    content:url("img/fairmont1.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group40 {
+    z-index: 4; /* slide over group 7 */
+  }
+  #group40 .parallax__layer--base {
+    content:url("img/type/STORIES.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+
+  #group41 {
+    z-index: 4; /* slide over group 2 */
+  }
+  #group41 .parallax__layer--base {
+    background: rgb(102,102,102);
+    content:url("img/stories0.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group42 {
+    z-index: 3; /* slide under groups 1 and 3 */
+
+  }
+  #group42 .parallax__layer--back {
+    background: rgb(123,210,102);
+    content:url("img/stories2.jpg");
+    link:url("img/stories2.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+
+  }
+
+  #group43 {
+    z-index: 4; /* slide over group 2 and 4 */
+  }
+  #group43 .parallax__layer--base {
+    content:url("img/stories3.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group44 {
+    z-index: 2; /* slide under group 3 and 5 */
+  }
+  #group44 .parallax__layer--deep {
+    content:url("img/stories4.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group45 {
+    z-index: 3; /* slide over group 4 and 6 */
+  }
+  #group45 .parallax__layer--base {
+    content:url("img/stories5.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group46 {
+    z-index: 5; /* slide under group 5 and 7 */
+  }
+  #group46 .parallax__layer--base {
+    content:url("img/type/CARING.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group47 {
+    z-index: 3; /* slide over group 7 */
+  }
+  #group47 .parallax__layer--base {
+    content:url("img/mazda.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group48 {
+    z-index: 2; /* slide under group 5 and 7 */
+  }
+  #group48 .parallax__layer--deep {
+    content:url("img/tempest.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+    #group49 {
+    z-index: 5; /* slide over group 2 */
+  }
+  #group49 .parallax__layer--base {
+    background: rgb(102,102,102);
+    content:url("img/android0.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group50 {
+    z-index: 3; /* slide under groups 1 and 3 */
+
+  }
+  #group50 .parallax__layer--back {
+    background: rgb(123,210,102);
+    content:url("img/android1.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+
+  }
+
+  #group51 {
+    z-index: 4; /* slide over group 2 and 4 */
+  }
+  #group51 .parallax__layer--base {
+    content:url("img/android2.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group52 {
+    z-index: 2; /* slide under group 3 and 5 */
+  }
+  #group52 .parallax__layer--deep {
+    content:url("img/handmade.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group53 {
+    z-index: 4; /* slide over group 4 and 6 */
+  }
+  #group53 .parallax__layer--base {
+    content:url("img/type/fxp0.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group54 {
+    z-index: 3; /* slide under group 5 and 7 */
+  }
+  #group54 .parallax__layer--base {
+    content:url("img/fxp1.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group55 {
+    z-index: 2; /* slide over group 7 */
+  }
+  #group55 .parallax__layer--deep {
+    content:url("img/telstra.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group56 {
+    z-index: 4; /* slide over group 7 */
+  }
+  #group56 .parallax__layer--base {
+    content:url("img/coke.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+
+  #group57 {
+    z-index: 5; /* slide over group 2 */
+  }
+  #group57 .parallax__layer--base {
+    background: rgb(102,102,102);
+    content:url("img/mtv.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group58 {
+    z-index: 3; /* slide under groups 1 and 3 */
+
+  }
+  #group58 .parallax__layer--back {
+    background: rgb(123,210,102);
+    content:url("img/modelo.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+
+  }
+
+  #group59 {
+    z-index: 4; /* slide over group 2 and 4 */
+  }
+  #group59 .parallax__layer--base {
+    content:url("img/tiptop.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group60 {
+    z-index: 4; /* slide under group 3 and 5 */
+  }
+  #group60 .parallax__layer--base {
+    content:url("img/tiptop0.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group61 {
+    z-index: 3; /* slide over group 4 and 6 */
+  }
+  #group61 .parallax__layer--back {
+    content:url("img/tiptop2.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group62 {
+    z-index: 4; /* slide under group 5 and 7 */
+  }
+  #group62 .parallax__layer--base {
+    content:url("img/buck.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group63 {
+    z-index: 3; /* slide over group 7 */
+  }
+  #group63 .parallax__layer--back {
+    content:url("img/handmades2.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+  #group64 {
+    z-index: 3; /* slide under group 5 and 7 */
+  }
+  #group64 .parallax__layer--base {
+    content:url("img/type/THANK_YOU.jpg");
+    /* Set rules to fill background */
+      min-height: 100%;
+      min-width: 1024px;
+      
+      /* Set up proportionate scaling */
+      width: 100%;
+      height: auto;
+      
+      /* Set up positioning */
+      position: fixed;
+      top: 0;
+      left: 0;
+  }
+
+
+  /* misc
+  --------------------------------------------- */
+  .demo__info {
+    position: absolute;
+    z-index:100;
+    bottom: 1vh;
+    top: auto;
+    font-size:80%;
+    text-align:center;
+    width: 100%;
+  }
+</style>
+
+</head>
+
+<body>
+ <div class="transparent"><img class="logo" src="img/sean_wt.png"></div>
+
+
+  <div class="parallax">
+    <div id="group1" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group2" class="parallax__group">
+      <div class="parallax__layer parallax__layer--back">
+      </div>
+    </div>
+    <div id="group3" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group4" class="parallax__group">
+      <div class="parallax__layer parallax__layer--back">
+      </div>
+    </div>
+    <div id="group5" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group6" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group7" class="parallax__group">
+      <div class="parallax__layer parallax__layer--deep">
+      </div>
+    </div>
+    <div id="group8" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group9" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group10" class="parallax__group">
+      <div class="parallax__layer parallax__layer--back">
+      </div>
+    </div>
+    <div id="group11" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group12" class="parallax__group">
+      <div class="parallax__layer parallax__layer--deep">
+      </div>
+    </div>
+    <div id="group13" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group14" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group15" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group16" class="parallax__group">
+      <div class="parallax__layer parallax__layer--deep">
+      </div>
+    </div>
+
+    <div id="group17" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group18" class="parallax__group">
+      <div class="parallax__layer parallax__layer--back">
+      </div>
+    </div>
+    <div id="group19" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group20" class="parallax__group">
+      <div class="parallax__layer parallax__layer--deep">
+      </div>
+    </div>
+    <div id="group21" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group22" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group23" class="parallax__group">
+      <div class="parallax__layer parallax__layer--deep">
+      </div>
+    </div>
+    <div id="group24" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group25" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group26" class="parallax__group">
+      <div class="parallax__layer parallax__layer--back">
+      </div>
+    </div>
+    <div id="group27" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group28" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group29" class="parallax__group">
+      <div class="parallax__layer parallax__layer--back">
+      </div>
+    </div>
+    <div id="group30" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group31" class="parallax__group">
+      <div class="parallax__layer parallax__layer--back">
+      </div>
+    </div>
+    <div id="group32" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group33" class="parallax__group">
+      <div class="parallax__layer parallax__layer--back">
+      </div>
+    </div>
+    <div id="group34" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group35" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group36" class="parallax__group">
+      <div class="parallax__layer parallax__layer--back">
+      </div>
+    </div>
+    <div id="group37" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group38" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group39" class="parallax__group">
+      <div class="parallax__layer parallax__layer--deep">
+      </div>
+    </div>
+    <div id="group40" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group41" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group42" class="parallax__group">
+      <div class="parallax__layer parallax__layer--back">
+      </div>
+    </div>
+    <div id="group43" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group44" class="parallax__group">
+      <div class="parallax__layer parallax__layer--deep">
+      </div>
+    </div>
+    <div id="group45" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group46" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group47" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group48" class="parallax__group">
+      <div class="parallax__layer parallax__layer--deep">
+      </div>
+    </div>
+
+    <div id="group49" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group50" class="parallax__group">
+      <div class="parallax__layer parallax__layer--back">
+      </div>
+    </div>
+    <div id="group51" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group52" class="parallax__group">
+      <div class="parallax__layer parallax__layer--deep">
+      </div>
+    </div>
+    <div id="group53" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group54" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group55" class="parallax__group">
+      <div class="parallax__layer parallax__layer--deep">
+      </div>
+    </div>
+    <div id="group56" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group57" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group58" class="parallax__group">
+      <div class="parallax__layer parallax__layer--back">
+      </div>
+    </div>
+    <div id="group59" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group60" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group61" class="parallax__group">
+      <div class="parallax__layer parallax__layer--back">
+      </div>
+    </div>
+    <div id="group62" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+    <div id="group63" class="parallax__group">
+      <div class="parallax__layer parallax__layer--back">
+      </div>
+    </div>
+    <div id="group64" class="parallax__group">
+      <div class="parallax__layer parallax__layer--base">
+      </div>
+    </div>
+
+
+
+  </div>
+
+
+</body>
+</html>
