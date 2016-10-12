@@ -1,0 +1,1 @@
+python convert_obj_three.py -i tower.obj -o tower.js
