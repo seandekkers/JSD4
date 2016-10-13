@@ -1,0 +1,73 @@
+<body>
+
+<h1>Lorem</h1>
+<p>Lorem Ipsum</p>
+
+<ul>
+<li>dolor
+<li>sit</li>
+<li>consectetur</li>
+</ul>
+<ul></ul
+<div>
+</div>
+
+<script>
+
+var ul = document.querySelector("ul");
+createMenuItem();
+
+var div = document.querySelector("div");
+div.innerHTML = "<h2>Excepteur sint occaecat</h2>";
+
+
+
+function createMenuItem(){
+
+// step 1: create elements
+	var li = document.createElement("li");
+	var p = document.createElement("p");
+	var img = document.createElement("img");
+
+//step 2 content and attributes
+
+p.innerHTML = "fish tacos";
+img.src = "http://search.chow.com/thumbnail/1280/800/www.chowstatic.com/assets/2014/09/29193_basic_tacos_3000x2000.jpg";
+img.width = "100";
+
+//step 3 append chile
+
+li.appendChild(img);
+li.appendChild(p);
+ul.appendChild(li);
+
+console.log(li);
+}
+
+// technique #2
+
+function createMenuItemTemplate(){
+
+	var li = document.createElement("li");
+
+var template = "<li>" + "<p>Beef Tacos</p>" +
+'<img src = "http://www.ingredientsinc.net/wp-content/uploads/2012/09/IMG_5408.jpg-tacos-with-type.jpg" width = "100">' +
+"</li>";
+
+// console.log(template);
+li.innerHTML = template;
+ul.appendChild(li);
+
+}
+
+</script>
+
+</body>
+
+<!-- http://search.chow.com/thumbnail/1280/800/www.chowstatic.com/assets/2014/09/29193_basic_tacos_3000x2000.jpg -->
+<!-- Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum. -->

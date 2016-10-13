@@ -1,0 +1,38 @@
+<html>
+
+
+<body>
+<h1>99 Bottles of Beer</h1>
+<ul>
+</ul>
+</body>
+
+<script>
+
+var ul = document.querySelector("ul");
+
+var beers;
+
+for(beers = 99; beers >= 1; beers--) {
+	var p = document.createElement("p");
+	var li = document.createElement("li");
+	var songPlural = (beers + " bottles of beer on the wall. " + beers +  " bottles of beer Take one down and pass it around, " + beers + " bottles of beer on the wall.");
+	p.innerHTML = songPlural;
+	li.appendChild(p);
+	ul.appendChild(li);
+
+	if (beers == 1){
+		var songSingular = (beers + " bottle of beer on the wall. " + beers +  " bottle of beer Take one down and pass it around, " + beers + " bottle of beer on the wall.");
+		p.innerHTML = songSingular;
+		li.appendChild(p);
+		ul.appendChild(li);
+
+	}
+}
+
+
+
+
+</script>
+
+<html>
