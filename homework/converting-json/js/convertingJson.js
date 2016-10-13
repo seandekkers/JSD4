@@ -49,7 +49,7 @@ item in the 'links' array.
 
 var links = [];
 flickerObj.items.forEach(function(event){
-	links.push(items.link);
+	links.push(events.link);
 	// console.log(event);
 });
 // console.log(links.length);
