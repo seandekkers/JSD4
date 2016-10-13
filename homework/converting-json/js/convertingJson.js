@@ -71,21 +71,21 @@ var linksJson = JSON.stringify(links);
 //console.log(linksJson);
 
 
-var tags = flickerObj.items.map(function(event){
-	return event.tags;
-})
+// var tags = flickerObj.items.map(function(event){
+// 	return event.tags;
+// })
 
 
-var filter = flickerObj.items.filter(function(event){
-	var firstDigit = event.author_id.slice(0,1);
-	if(firstDigit == 1)
-		return true;
-}).map(function(event){
-	return event.title;
-}).toString("");
+// var filter = flickerObj.items.filter(function(event){
+// 	var firstDigit = event.author_id.slice(0,1);
+// 	if(firstDigit == 1)
+// 		return true;
+// }).map(function(event){
+// 	return event.title;
+// }).toString("");
 
 
-console.log(filter);
+// console.log(filter);
 
 // filter.forEach(function(event){
 // 	console.log("Filter :" + event.title)
