@@ -1,38 +1,60 @@
 // Setup
 // ----------------------------------------------
-
+//Buttons
 var trafficLight = document.querySelector("#traffic-light");
 var stop = document.querySelector(".stop-button");
 var slow = document.querySelector(".slow-button");
 var go = document.querySelector(".go-button");
-var caution = document.querySelector(" .caution-button");
-
+var caution = document.querySelector(".caution-button");
+var run = document.querySelector(".run-button");
+//Lights
 var stopLightSelector = document.querySelector(".stop-light");
 var slowLightSelector = document.querySelector(".slow-light");
 var goLightSelector = document.querySelector(".go-light");
+
+
+// Timers
+var runLightsLoop1;
+var stopLightTimer;
+var slowLightTimer;
+var goLightTimer;
+
 
 // Structure
 // ----------------------------------------------
 var blinkOff;
 var blinkOn;
+run.addEventListener("click", runLightsLoop);
 stop.addEventListener("click", stopLight);
 slow.addEventListener("click", slowLight);
 go.addEventListener("click", goLight);
 caution.addEventListener("click", blink);
+run.addEventListener("dblclick",noLight);
 
 // Events
 // ----------------------------------------------
 
+function clearIntervals(){
+	clearInterval(runLightsLoop1);
+	clearTimeout(stopLightTimer);
+	clearTimeout(slowLightTimer);
+	clearTimeout(goLightTimer);
+	clearInterval(blinkOff);
+	clearInterval(blinkOn);
+}
+
 function noLight(){
 	console.log("nolight")
+	
+	clearIntervals();
+
 	stopLightSelector.className = "light";
 	slowLightSelector.className = "light";
 	goLightSelector.className = "light";
 }
 
 function stopLight(){
-	clearInterval(blinkOff);
-	clearInterval(blinkOn);
+	clearIntervals();
 	console.log("stop");
 	stopLightSelector.className = "stop";
 	slowLightSelector.className = "light";
@@ -51,18 +73,43 @@ function slowLight(){
 }
 
 function goLight(){
-	clearInterval(blinkOff);
-	clearInterval(blinkOn);
+	clearIntervals();
 	console.log("go");
 	stopLightSelector.className = "light";
 	slowLightSelector.className = "light";
 	goLightSelector.className = "go";
 }
 function blink(){
+	clearIntervals();
 	console.log("blink");
-	blinkOff = setInterval(slowLight,1000);
-	blinkOn = setInterval(noLight,2000);
+	blinkOff = setInterval(function(){stopLightSelector.className = "light";
+	slowLightSelector.className = "light";
+	goLightSelector.className = "light";},1000);
+	blinkOn = setInterval(function(){stopLightSelector.className = "light";
+	slowLightSelector.className = "slow";
+	goLightSelector.className = "light";},2000);
 }
+
+function runLightsOnce(){
+	stopLightTimer = setTimeout(function(){stopLightSelector.className = "stop";
+	slowLightSelector.className = "light";
+	goLightSelector.className = "light";},1000);
+	slowLightTimer = setTimeout(function(){stopLightSelector.className = "light";
+	slowLightSelector.className = "slow";
+	goLightSelector.className = "light";},2000);
+	goLightTimer = setTimeout(function(){stopLightSelector.className = "light";
+	slowLightSelector.className = "light";
+	goLightSelector.className = "go";},3000);
+
+}
+
+function runLightsLoop(){
+	clearIntervals();
+	setTimeout(runLightsOnce)
+	runLightsLoop1 = setInterval(runLightsOnce, 3000);
+}
+
+
 
 
 
