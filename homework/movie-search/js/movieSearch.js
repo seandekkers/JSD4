@@ -5,6 +5,7 @@ var mainPoster = document.querySelector("img.poster");
 var mainTitle = document.querySelector("h2.title");
 var mainPlot = document.querySelector("p.plot");
 var mainLink = document.querySelector("a.imdb-link");
+var inline = String.fromCharCode(47);
 
 details.style.visibility = 'hidden';
 mainPoster.src = "";
@@ -85,7 +86,7 @@ function getMovie(json){
 	json.Search.forEach( function(object) {
 		if (object.Poster != null){
 			console.log(object.Poster.slice(7,object.Poster.length));
-			var templateHtml = '<li id="' + object.imdbID + '>\n<img src="http://' + object.Poster.slice(7,object.Poster.length) + '">\n<p id="'+ object.imdbID + '">' + object.Title + '</p></li>';
+			var templateHtml = '<li id="' + object.imdbID + '>\n<img src="http:'+ inline + inline + object.Poster.slice(7,object.Poster.length) + '">\n<p id="'+ object.imdbID + '">' + object.Title + '</p></li>';
 			moviesList.push(templateHtml);
 			// resultsSelector.innerHTML += templateHtml;		
 			i++;
