@@ -32,7 +32,8 @@ function getRestaurants(event){
 // ------------------------------------
 function updateRestaurants(json) {
 	console.log("update", json.restaurants)
-
+	// clear restaurants 
+	// result.innerHTML = "";
 	json.restaurants.forEach(function(restaurant){
 		console.log(restaurant.name);
 		li = document.createElement("li");
