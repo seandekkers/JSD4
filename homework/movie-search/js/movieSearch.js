@@ -1,5 +1,6 @@
 console.log("test");
 var details = document.querySelector(".details");
+var main = document.querySelector("main");
 var searchTitle = document.querySelector(".search");
 var resultsSelector = document.querySelector(".results")
 var url, htmlOutput, movieTemplateFunction, movieTemplate;
@@ -12,14 +13,15 @@ var asideHide = document.querySelector(".questions").style.visibility = "hidden"
 document.addEventListener("keydown", function(event){
 	console.log("EVENT KEY: " + event.which);
 	if (event.which == 13){
-		console.log("SERACH VIA ENTER");
+		console.log("SERACH VIA ENTE");
+
 		searchMovie();
 	}
 
 });
 
 //Listen for click
-document.addEventListener("click",function(event){
+main.addEventListener("click",function(event){
 	event.preventDefault();
 	console.log(event.target.tagName);
 	//Butoon or P with ID
