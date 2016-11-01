@@ -21,7 +21,7 @@ searchSelection.addEventListener('click', searchToggle);
 
 mainArticles.addEventListener('click', titleClick);
 
-
+var articleTest;
 
 
 var jsontest = {};
@@ -40,7 +40,22 @@ var hackerNewsArray = [];
 function titleClick(event){
 
 	var target = event.target;
-	console.log(target.innerHTML);
+
+	
+	var jTarget = $(target);
+	var articleId = jTarget.closest('.article');
+	articleSearch = articleTest[0].id;
+	console.log(articleSearch);
+	// var articleTitle = jTarget.closest('h3');
+	// var articleDescription = jTarget.siblings('.description');
+	// var articleLink = jTarget.siblings('a');
+
+	// console.log(articleTitle[0].outerText);
+	// console.log(articleDescription[0].outerText);
+	// console.log(articleLink[0].outerText);
+	
+
+
 
 	// var closestH3 = event.closest(h3);
 
@@ -50,9 +65,9 @@ function titleClick(event){
 
 
 		
-	popUpTitle.innerHTML = "TEST";
-	popUpDescription.innerHTML ="Test";
-	popUpLink.innerHTML ="test";
+	popUpTitle.innerHTML = articleTitle[0].outerText;
+	popUpDescription.innerHTML = articleDescription[0].outerText;
+	popUpLink.innerHTML = articleLink[0].outerText;
 
 	var closePopUp = document.querySelector('a .closePopUp');
 	closePopUp.addEventListener('click',popUpToggle);
@@ -65,15 +80,9 @@ function popUpToggle(item){
 	popUp.classList.toggle("hidden");
 	// popUp.classList.toggle("loader");
 
-	
-
-	
-
-	
-
-
-
 }
+
+
 function searchToggle(){
 	
 	console.log("click Search");

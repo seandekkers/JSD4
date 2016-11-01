@@ -63,13 +63,13 @@
 
 <script id="main-template-digg" type="text/x-handlebars-template">
   {{#each data.feed}}
-  <article class="article">
+  <article class="article" id="#">
       <section class="featuredImage">
         <img src="{{content.media.images.0.original_url}}" height=60px width=60px alt="" />
       </section>
       <section class="articleContent">
           <a href="#"><h3>{{content.title}}</h3></a>
-          <h6>{{content.description}}</h6>
+          <h6 class="description">{{content.description}}</h6>
       </section>
       <section class="impressions">
         {{digg_score}}
@@ -90,13 +90,13 @@
 <script id="main-template-hn" type="text/x-handlebars-template">
 
     {{#each article}}
-      <article class="article">
+      <article class="article" id="#">
         <section class="featuredImage">
           <img src="images/y.ico" alt="" />
         </section>
         <section class="articleContent">
             <a href="{{url}}"><h3>{{title}}</h3></a>
-            <h6>{{type}}</h6>
+            <h6 class="description">{{type}}</h6>
         </section>
         <section class="impressions">
           {{score}}
@@ -112,13 +112,13 @@
 <script id="main-template-times" type="text/x-handlebars-template">
 
     {{#each results}}
-      <article class="article">
+      <article class="article" id="#">
         <section class="featuredImage">
           <img src="{{multimedia.0.url}}" height=60px width=60px alt="{{caption}}" />
         </section>
         <section class="articleContent">
             <a href="{{url}}"><h3>{{title}}</h3></a>
-            <h6>{{subsection}}</h6>
+            <h6 class="description">{{subsection}}</h6>
         </section>
         <section class="impressions">
           {{score}}
