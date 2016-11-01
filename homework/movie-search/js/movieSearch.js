@@ -1,4 +1,5 @@
 console.log("test");
+var body = document.querySelector("body");
 var details = document.querySelector(".details");
 var main = document.querySelector("main");
 var searchTitle = document.querySelector(".search");
@@ -10,19 +11,11 @@ var asideHide = document.querySelector(".questions").style.visibility = "hidden"
 
 
 //Listen for Enter
-document.addEventListener("keydown", function(event){
-	console.log("EVENT KEY: " + event.which);
-	if (event.which == 13){
-		console.log("SERACH VIA ENTE");
-
-		searchMovie();
-	}
-
-});
+document.addEventListener("submit",searchMovie);
 
 //Listen for click
-main.addEventListener("click",function(event){
-	event.preventDefault();
+body.addEventListener("click",function(event){
+	
 	console.log(event.target.tagName);
 	//Butoon or P with ID
 	if (event.target.tagName == "BUTTON"){
@@ -33,6 +26,7 @@ main.addEventListener("click",function(event){
 		console.log("click: 2");
 		console.log(event.target.id);
 	}
+	event.preventDefault();
 	// var checkObj = {
 	// 	BUTTON: searchMovie(),
 	// 	// INPUT: function clickedSearch(){console.log(event.keyCode);},
@@ -45,13 +39,7 @@ main.addEventListener("click",function(event){
 });
 
 
-function searchMovie(){
-	console.log("Search Movie");
-	url = "http://www.omdbapi.com/?s=" + searchTitle.value;
-	console.log("URL: " + url);
-	jQuery.getJSON(url, updateMovies);
-
-}
+ 
 
 function searchSecondMovie(event){
 	console.log("Title: " + event);
