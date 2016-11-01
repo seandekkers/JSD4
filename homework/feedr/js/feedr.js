@@ -44,8 +44,10 @@ function titleClick(event){
 	
 	var jTarget = $(target);
 	var articleId = jTarget.closest('.article');
-	articleSearch = articleTest[0].id;
+	articleSearch = articleId[0].id;
 	console.log(articleSearch);
+
+
 	// var articleTitle = jTarget.closest('h3');
 	// var articleDescription = jTarget.siblings('.description');
 	// var articleLink = jTarget.siblings('a');
@@ -62,12 +64,10 @@ function titleClick(event){
 
 	popUp.classList.toggle("hidden");
 	popUp.classList.remove("loader");
-
-
 		
-	popUpTitle.innerHTML = articleTitle[0].outerText;
-	popUpDescription.innerHTML = articleDescription[0].outerText;
-	popUpLink.innerHTML = articleLink[0].outerText;
+	popUpTitle.innerHTML = "Test title"
+	popUpDescription.innerHTML = "Test description";
+	popUpLink.innerHTML = "Test Link";
 
 	var closePopUp = document.querySelector('a .closePopUp');
 	closePopUp.addEventListener('click',popUpToggle);
@@ -105,10 +105,9 @@ function updateArticlesDigg(json){
 	var articleTemplateFunction = Handlebars.compile(articleTemplate.innerHTML);
 	var htmlArticle = articleTemplateFunction(json);
 	mainArticles.innerHTML = htmlArticle;
-	enableTitleSelect();
 }
 
-/////////////////////////////////////////////////////////////////
+
 function selectHackerNews(){
 	console.log('HACKER-NEWS')
 	var bestStories = "https://hacker-news.firebaseio.com/v0/beststories.json?print=pretty";
@@ -148,7 +147,6 @@ function updateArticlesTwo(json){
 	var hnTemplateFunction = Handlebars.compile(hnTemplate.innerHTML);
 	var detailsHTML = hnTemplateFunction(json);
 	mainArticles.innerHTML = detailsHTML;
-	enableTitleSelect();
 
 }
 
@@ -183,5 +181,4 @@ function updateArticlesThree(json){
 	var articleTemplateFunction = Handlebars.compile(articleTemplate.innerHTML);
 	var htmlArticle = articleTemplateFunction(json);
 	mainArticles.innerHTML = htmlArticle;
-	enableTitleSelect();
 }
