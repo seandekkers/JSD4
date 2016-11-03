@@ -1,0 +1,23 @@
+{
+  "name": "sean",
+  "version": "1.0.0",
+  "main": "handlebars-v4.0.5.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seandekkers/JSD4.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/seandekkers/JSD4/issues"
+  },
+  "homepage": "https://github.com/seandekkers/JSD4#readme",
+  "description": ""
+}

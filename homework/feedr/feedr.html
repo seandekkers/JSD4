@@ -67,7 +67,7 @@
       <section class="featuredImage">
         <img src="{{content.media.images.0.original_url}}" height=60px width=60px alt="" />
       </section>
-      <section class="articleContent">
+      <section class="articleContent" id="digg">
           <a href="#"><h3>{{content.title}}</h3></a>
           <h6 class="description">{{content.description}}</h6>
       </section>
@@ -90,12 +90,12 @@
 <script id="main-template-hn" type="text/x-handlebars-template">
 
     {{#each article}}
-      <article class="article" id="#">
+      <article class="article" id="{{id}}">
         <section class="featuredImage">
           <img src="images/y.ico" alt="" />
         </section>
-        <section class="articleContent">
-            <a href="{{url}}"><h3>{{title}}</h3></a>
+        <section class="articleContent" id="hn">
+            <a href="#"><h3>{{title}}</h3></a>
             <h6 class="description">{{type}}</h6>
         </section>
         <section class="impressions">
@@ -116,8 +116,8 @@
         <section class="featuredImage">
           <img src="{{multimedia.0.url}}" height=60px width=60px alt="{{caption}}" />
         </section>
-        <section class="articleContent">
-            <a href="{{url}}"><h3>{{title}}</h3></a>
+        <section class="articleContent" id="times">
+            <a href="#"><h3>{{title}}</h3></a>
             <h6 class="description">{{subsection}}</h6>
         </section>
         <section class="impressions">

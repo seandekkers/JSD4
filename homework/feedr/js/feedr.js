@@ -43,9 +43,13 @@ function titleClick(event){
 
 	
 	var jTarget = $(target);
+	var sectionId = jTarget.closest('.articleContent');
+	var selector = sectionId[0].id.toString();
+	console.log("Selector: " + selector);
 	var articleId = jTarget.closest('.article');
 	articleSearch = articleId[0].id;
 	console.log(articleSearch);
+	var url = "http://digg.com/search?q="+ articleSearch;
 
 
 	// var articleTitle = jTarget.closest('h3');
@@ -60,7 +64,8 @@ function titleClick(event){
 
 
 	// var closestH3 = event.closest(h3);
-
+	var hackerNewsUrl = "https://hacker-news.firebaseio.com/v0/item/" + articleSearch + ".json?print=pretty";
+	console.log(hackerNewsUrl);
 
 	popUp.classList.toggle("hidden");
 	popUp.classList.remove("loader");
@@ -70,7 +75,42 @@ function titleClick(event){
 	popUpLink.innerHTML = "Test Link";
 
 	var closePopUp = document.querySelector('a .closePopUp');
+	
+	// $.getJSON(hackerNewsUrl,retrieveArticlePopUp);
+
+	
+	
+	if (selector == "digg"){
+		console.log("DIGG POP UP");
+	
+	} else if (selector == "hn"){
+		console.log("HACKER-NEWS POP UP");
+		$.getJSON(hackerNewsUrl,retrieveArticlePopUp);
+
+	} else if (selector == "times"){
+		console.log("TIMES POP UP");
+
+	}
+	
+
 	closePopUp.addEventListener('click',popUpToggle);
+
+
+	
+
+}
+
+function retrieveArticlePopUp(json){
+	console.log("RETRIEVE ARTICLE");
+	
+console.log(json);
+// popUp.classList.toggle("hidden");
+// popUp.classList.remove("loader");
+	
+popUpTitle.innerHTML = json.title;
+popUpDescription.innerHTML = json.url;
+popUpLink.innerHTML = "Link";
+
 
 }
 
@@ -118,12 +158,14 @@ function selectHackerNews(){
 function hackerNewsJson(json){
 	json.forEach(function(index){
 		var hackerNewsUrl = "https://hacker-news.firebaseio.com/v0/item/" + index +".json?print=pretty";
+		
 		$.getJSON(hackerNewsUrl, buildHnJson);
 	});
 
 }
 
 function buildHnJson(json){
+	// console.log(json);
 	var hackerData = {
     article: [],
     misc: "test"
@@ -145,27 +187,10 @@ function updateArticlesTwo(json){
 	jsontest2 = json;
 	var hnTemplate = document.querySelector("#main-template-hn");
 	var hnTemplateFunction = Handlebars.compile(hnTemplate.innerHTML);
-	var detailsHTML = hnTemplateFunction(json);
-	mainArticles.innerHTML = detailsHTML;
+	var htmlArticle = hnTemplateFunction(json);
+	mainArticles.innerHTML = htmlArticle;
 
 }
-
-
-
-
-// function updateArticlesTwo(json){
-	
-// 	jsontest = json;
-// 	console.log(json);
-// 	var articleTemplate = document.querySelector("#main-template-digg");
-// 	var articleTemplateFunction = Handlebars.compile(articleTemplate.innerHTML);
-// 	var htmlArticle = articleTemplateFunction(json);
-// 	mainArticles.innerHTML = htmlArticle;
-
-
-// }
-
-/////////////////////////////////////////////////////////////////
 
 function selectTimes(){
 	console.log("NYTIMES");
